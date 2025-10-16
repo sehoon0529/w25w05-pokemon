@@ -17,10 +17,15 @@ export default function PokemonList() {
                     const species = await getPokemonSpecies(detail.id);
                     const koreanName = species.names.find((n) => n.language.name === "ko")?.name;
 
+                    //console.log(detail.types)
+                    //console.log(detail.types.map((t) => t.type.name))
+
                     return {
                         id: detail.id,
                         name: koreanName || detail.name,
                         image: detail.sprites.other["official-artwork"].front_default,
+                        // types 배열에서 타입 이름만 추출하여 새로운 배열을 만들고 반환
+                        types: detail.types.map((t) => t.type.name),
                     }
                 })
             )
